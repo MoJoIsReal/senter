@@ -49,6 +49,10 @@ export type SitePage = {
   title: string;
   intro: string;
   body: string[];
+  sections?: Array<{
+    title: string;
+    body: string[];
+  }>;
 };
 
 export type TermsVersion = {

@@ -523,6 +523,16 @@ h3 {
   font-size: 17px;
 }
 
+.content-subsection {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.content-subsection h2 {
+  font-size: 28px;
+}
+
 .signup-layout {
   display: grid;
   grid-template-columns: 320px minmax(0, 1fr);

@@ -26,6 +26,14 @@ export default async function ContentPage({ params }: PageProps) {
         {page.body.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
         ))}
+        {page.sections?.map((section) => (
+          <section className="content-subsection" key={section.title}>
+            <h2>{section.title}</h2>
+            {section.body.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </section>
+        ))}
       </div>
     </main>
   );

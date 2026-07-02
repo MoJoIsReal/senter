@@ -83,10 +83,11 @@ export const courseTypes: CourseType[] = [
     title: "Privattimer og brudevals",
     shortTitle: "Privattimer",
     intro:
-      "Brudevals, privatundervisning og egne opplegg for personer, par eller grupper.",
+      "Brudevals, bryllupsgjester, utdrikningslag og privatundervisning tilpasset anledning, nivå og ønsker.",
     description: [
-      "Privattimer passer for brudevals, individuell oppfølging, firma, vennegjenger og grupper som ønsker eget opplegg.",
-      "Hildemors tilpasser undervisningen etter mål, erfaring og anledning.",
+      "Den vanligste grunnen til å ta privattimer hos Hildemors er forberedelse til brudevals. Undervisningen tilpasses parets erfaring, musikkvalg og praktiske behov.",
+      "Hildemors kan også lage danseopplegg for bryllupsgjester, utdrikningslag, vennegrupper, firmaarrangementer og privatpartier.",
+      "Konkurransedansere kan bruke privattimer til mer målrettet oppfølging i sportsdans, hip hop, streetdance, jazz, moderne, klassisk og andre danseformer.",
     ],
     image:
       "https://www.hildemors.no/wp-content/uploads/2019/02/20110825_fotografi_hildemors_landslag_MG_3650.jpg",
