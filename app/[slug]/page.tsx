@@ -27,7 +27,11 @@ export default async function ContentPage({ params }: PageProps) {
           <p key={paragraph}>{paragraph}</p>
         ))}
         {page.sections?.map((section) => (
-          <section className="content-subsection" key={section.title}>
+          <section
+            className="content-subsection"
+            id={section.title.toLowerCase().startsWith("historien") ? "historie" : undefined}
+            key={section.title}
+          >
             <h2>{section.title}</h2>
             {section.body.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>

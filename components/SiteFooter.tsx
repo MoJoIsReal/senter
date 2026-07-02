@@ -18,7 +18,7 @@ export function SiteFooter() {
             <strong>E-post:</strong> info@hildemors.no
           </p>
           <p>
-            <Link href="/historie">Historie</Link> ·{" "}
+            <Link href="/om-oss#historie">Historie</Link> ·{" "}
             <Link href="/betalingsbetingelser">Betalingsbetingelser</Link> ·{" "}
             <Link href="/admin">Admin</Link>
           </p>

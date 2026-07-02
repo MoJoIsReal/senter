@@ -7,19 +7,23 @@ export const sitePages: SitePage[] = [
     intro:
       "Hildemors Dansesenter er en danseskole i Bergen med røtter tilbake til 1947.",
     body: [
-      "Hildemor Svenkerud grunnla sin egen danseskole i Bergen som 19-åring. Skolen har siden hatt som mål å gjøre dans, omgangsformer og mestring tilgjengelig for flere.",
-      "Hildemors ønsker å stimulere til trivsel, mestring og god helse, samtidig som dansesenteret bidrar til integrering, likestilling og et levende lokalt miljø.",
+      "Det hele startet da Hildemor Svenkerud i 1947, 19 år gammel, grunnla sin egen danseskole i Bergen.",
+      "Som “veggpryd” visste hun alt for godt hvor viktig det var å kunne ta del i sosial aktivitet og hva er da bedre enn å lære seg dans, omgangsformer og dannelse?",
+      "Hildemors Dansesenter har som mål å bidra til å stimulere til trivsel, mestring og god helse, bedre integrering og likestilling, og fremme ressursutnyttelse ved arealdeling.",
     ],
-  },
-  {
-    slug: "historie",
-    title: "Historie",
-    intro:
-      "Historien bak Hildemors Dansesenter strekker seg fra de første kursene i 1948 til dagens lokaler i Torggaten 7.",
-    body: [
-      "Hildemors Dansesenter ble grunnlagt av Hildemor Svenkerud høsten 1947, og de første kursene ble arrangert våren etter. Undervisningen startet med standarddanser og latinamerikanske danser for barn og voksne.",
-      "Skolen har lagt grunnlaget for mange sterke dansere, inkludert utøvere med NM-, EM- og VM-titler. I 1997 overtok Jane Vestøl driften, og hun har videreført skolen etter Hildemors prinsipper samtidig som nye danseformer og trenere er kommet til.",
-      "Etter mange år i Håndverkeren flyttet dansesenteret til Eldoradogården i 2003, og i 2023 videre til supersentrale lokaler i Torggaten 7 ved siden av Hotell Norge.",
+    sections: [
+      {
+        title: "Historien bak Hildemors Dansesenter",
+        body: [
+          "Hildemors Dansesenter ble grunnlagt av Hildemor Svenkerud høsten 1947, og de første kursene ble arrangert våren 1948.",
+          "Hildemor var bare 19 år gammel da hun grunnla skolen, og hun tok sin utdannelse ved Svaes danseskole i Oslo. De første årene underviste Hildemor i Standard danser og Latinamerikanske danser for barn fra 3 år og oppover, i tillegg til at hun hadde voksenkurs. I ettertid har danseskolen utvidet til å omfatte mange andre danseformer.",
+          "Hildemor Svenkerud var Æresmedlem både i Norges Danseforbund og i det internasjonale danseforbundet ISTD. Hun var kjent for sin evne til å utvikle dansens basic og legge gode grunnlag for en framtidig dansekarriere hos sine elever.",
+          "Hildemors Dansesenter har lagt grunnlaget for mange gode dansere. Blant annet har Kim Rygel og Cecilie Brink Rygel tatt sine første dansetrinn hos Hildemors. Kim og Cecilie har en lang merittliste med NM-gull, verdensmestertitler og europamestertitler.",
+          "Det er fortsatt mange lovende dansepar som danser på Hildemors Dansesenter, og flere av skolens elever har tatt NM-titler, nordiske titler og vunnet store internasjonale konkurranser.",
+          "1. juli 1997 solgte Hildemor dansesenteret til Jane Vestøl. Jane har bakgrunn som konkurransedanser, og har tatt sin utdannelse gjennom Norges Danseforbund. Hildemors Dansesenter drives fortsatt av Jane, som har utvidet dansesenteret med flere danseformer og nye trenere samtidig som hun viderefører Hildemor Svenkeruds prinsipper.",
+          "Etter 55 år i den gamle Håndverkeren flyttet Hildemors Dansesenter inn i Eldoradogården sommeren 2003. I 2023 flyttet dansesenteret til nye, supersentrale lokaler i Torggaten 7, ved siden av Hotell Norge.",
+        ],
+      },
     ],
   },
   {
