@@ -64,3 +64,11 @@ export type TermsVersion = {
     body: string;
   }>;
 };
+
+export type NewsPost = {
+  id: string;
+  title: string;
+  date: string;
+  author: string;
+  excerpt: string;
+};

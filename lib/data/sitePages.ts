@@ -76,10 +76,38 @@ export const sitePages: SitePage[] = [
   },
   {
     slug: "show",
-    title: "Show",
-    intro: "Show og oppvisning er en viktig del av Hildemors-identiteten.",
+    title: "Danseshow",
+    intro:
+      "Hildemors Dansesenter har lang erfaring med danseshow i ulike danseformer.",
     body: [
-      "Denne siden bevarer plass til show, arrangementer og scenisk aktivitet.",
+      "Hildemors har danset på TV, nattklubber, reklame, julebord, firmafester, jubileer og andre arrangementer.",
+      "Show tilpasses etter ønsker og anledning, og kan organiseres i alle skolens danseformer.",
+    ],
+    sections: [
+      {
+        title: "Show i standard- og latinamerikanske danser",
+        body: [
+          "Sportsdanserne fra HILL er sterke innen norsk sportsdans, og flere par holder høyt nivå i aldersbestemte klasser.",
+          "Danserne er spesialisert i de fem standarddansene engelsk vals, tango, wienervals, slow foxtrot og quickstep, og de fem latinamerikanske dansene samba, cha-cha-cha, rumba, paso doble og jive.",
+          "Repertoaret kan også utvides med argentinsk tango og salsa.",
+        ],
+      },
+      {
+        title: "Showdansgruppen",
+        body: [
+          "Showgruppen består i hovedsak av trenere og de beste elevene ved Hildemors Dansesenter.",
+          "De danser commercial, hip hop, R&B og andre dansetyper man typisk ser på TV. Oppvisninger fra showdansgruppen passer godt for et yngre publikum.",
+          "Medlemmene har lang erfaring til tross for ung alder, og flere er også under utdannelse innen dans.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "nyheter",
+    title: "Nyheter",
+    intro: "Aktuelt fra Hildemors Dansesenter.",
+    body: [
+      "Her samles nyheter, workshops, ferieinformasjon og aktuelle påmeldinger fra Hildemors.",
     ],
   },
   {
