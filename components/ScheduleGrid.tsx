@@ -91,11 +91,6 @@ export function ScheduleGrid({ season }: { season: Season }) {
             aria-modal="true"
             aria-labelledby="course-detail-title"
           >
-            <div
-              className="detail-image"
-              style={{ backgroundImage: `url(${selectedType.image})` }}
-              aria-hidden="true"
-            />
             <div className="detail-body">
               <p className="detail-kicker">Kursinformasjon</p>
               <h2 id="course-detail-title">{selected.title}</h2>

@@ -468,7 +468,7 @@ h3 {
 }
 
 .course-detail {
-  width: min(640px, 100%);
+  width: min(760px, 100%);
   max-height: min(760px, 92vh);
   overflow: auto;
   border: 1px solid var(--line);
@@ -477,14 +477,8 @@ h3 {
   box-shadow: 0 24px 70px rgba(33, 29, 26, 0.24);
 }
 
-.detail-image {
-  height: 180px;
-  background-position: center;
-  background-size: cover;
-}
-
 .detail-body {
-  padding: 20px;
+  padding: 28px;
 }
 
 .detail-kicker {
@@ -497,6 +491,7 @@ h3 {
 }
 
 .detail-meta {
+  margin-bottom: 18px;
   color: var(--muted);
   font-weight: 750;
 }
