@@ -89,7 +89,7 @@ Hildemors må kunne:
 - Legge kurs i semester.
 - Sette dag, starttid, varighet, instruktør, sal, pris og maks antall deltakere.
 - Se ledige plasser og venteliste.
-- Registrere betaling.
+- Registrere betaling manuelt.
 - Registrere oppmøte for hver elev over 12 kursuker.
 - Lage nytt semester som utkast.
 - Forhåndsvise og publisere ny timeplan.
@@ -130,6 +130,22 @@ Påmeldingen må også støtte:
 - Beskjed til Hildemors.
 - Automatisk venteliste hvis kurset er fullt.
 
+Betaling håndteres manuelt i første versjon. Systemet skal derfor ikke integrere Vipps/kort ved lansering, men admin må kunne sette og endre betalingsstatus på påmeldinger.
+
+## Oppmøte
+
+Resepsjonen tar imot deltakere ved ankomst og registrerer oppmøte. Systemet skal derfor støtte en resepsjonsvennlig innsjekkflyt, heller enn en egen instruktørvisning som hovedflyt.
+
+Mulig løsning:
+
+- Hver deltaker eller påmelding får en QR-kode.
+- Resepsjonen scanner QR-koden ved ankomst.
+- Systemet finner riktig elev, kurs og dagens kursuke.
+- Resepsjonen bekrefter oppmøte.
+- Manuell søk/innsjekk må finnes som fallback hvis QR-kode mangler.
+
+Oppmøte lagres fortsatt per deltaker per kursuke, slik at Hildemors kan se historikk for alle 12 kursuker.
+
 ## Kursvilkår
 
 Kursvilkårene fra dagens Google Forms skal bevares, men vises mer lesbart i steg 3.
@@ -146,6 +162,8 @@ Vilkår grupperes i temaer:
 
 Brukeren må aktivt bekrefte “Jeg godtar påmelding- og betalingsbetingelsene” før innsending. Full norsk/engelsk tekst skal være tilgjengelig fra samme steg.
 
+Kursvilkår skal versjoneres. Hver påmelding må lagre hvilken vilkårsversjon brukeren aksepterte, slik at senere endringer i vilkårene ikke endrer historikken for tidligere påmeldinger.
+
 ## Datamodell
 
 Foreslåtte hovedentiteter:
@@ -161,6 +179,7 @@ Foreslåtte hovedentiteter:
 - `payments`: betalingsregistreringer og status.
 - `attendance`: oppmøte per deltaker per kursuke.
 - `consents`: foto/film og vilkårsaksept.
+- `terms_versions`: versjonerte kursvilkår.
 
 Viktige relasjoner:
 
@@ -169,6 +188,9 @@ Viktige relasjoner:
 - En `enrollment` peker til `course` og `participant`.
 - `participant` kan ha én eller flere `guardians`.
 - `attendance` knytter `enrollment` til `course_session`.
+- `enrollment` eller `consents` peker til eksakt `terms_versions`-rad som ble akseptert.
+
+Tidligere semester skal kun være synlig internt. Public nettside viser aktivt publisert semester, mens admin kan se arkiverte semester, gamle påmeldinger, betalinger og oppmøte.
 
 ## Mockups
 
@@ -183,9 +205,9 @@ Arbeidsmockups ligger i `mockups/`:
 - `admin-visual-schedule-builder.html`
 - `admin-course-types.html`
 
-## Åpne Avklaringer
+## Besluttede Avklaringer
 
-- Om betaling kun registreres manuelt i første versjon, eller om Vipps/kort skal integreres senere.
-- Om instruktører skal ha egen mobiltilpasset oppmøtevisning.
-- Om tidligere semester skal være synlig offentlig som arkiv eller kun internt.
-- Om kursvilkår skal ha versjonering, slik at hver påmelding lagrer nøyaktig vilkårsversjon.
+- Betaling registreres manuelt i første versjon.
+- Oppmøte registreres av resepsjonen ved ankomst. QR-kode per deltaker/påmelding bør vurderes som effektiv innsjekkmetode.
+- Tidligere semester er kun synlig internt.
+- Kursvilkår versjoneres, og hver påmelding lagrer nøyaktig vilkårsversjon.
