@@ -19,6 +19,7 @@ export function SiteFooter() {
           </p>
           <p>
             <Link href="/om-oss#historie">Historie</Link> ·{" "}
+            <Link href="/etikette">Etikette</Link> ·{" "}
             <Link href="/betalingsbetingelser">Betalingsbetingelser</Link> ·{" "}
             <Link href="/admin">Admin</Link>
           </p>

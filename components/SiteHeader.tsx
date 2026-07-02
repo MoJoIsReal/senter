@@ -6,6 +6,7 @@ const links = [
   ["Timeplan", "/timeplan"],
   ["Privattimer", "/privattimer"],
   ["Show", "/show"],
+  ["Pris", "/pris"],
   ["Nyheter", "/nyheter"],
   ["Om oss", "/om-oss"],
   ["Kontakt", "/kontakt"],

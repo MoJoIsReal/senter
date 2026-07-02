@@ -113,9 +113,68 @@ export const sitePages: SitePage[] = [
   {
     slug: "pris",
     title: "Pris",
-    intro: "Priser og søskenrabatter fra aktivt semester.",
+    intro:
+      "Kurspriser, søskenmoderasjon, privattimer, utdrikningslag, swing/salsa og gavekort.",
     body: [
-      "Prislinjen fra timeplanen vises også på prissiden, og kan senere styres fra admin.",
+      "Vi tar ikke ansvar for eventuelle trykkfeil i denne prislisten.",
+    ],
+    sections: [
+      {
+        title: "Generell kurspris",
+        body: [
+          "1 time * 12 uker: Kr. 2690,- pr. person.",
+          "Ved flere kurs gis rabatt tilsvarende søskenmoderasjon.",
+        ],
+      },
+      {
+        title: "Kurs 12 uker - 1 kurs pr uke",
+        body: [
+          "Par: Kr. 4980,- pr. par (rabatt kr. 400,-).",
+          "2 søsken: Kr. 4980,- (rabatt kr. 400,-).",
+          "3 søsken: Kr. 6290,- (rabatt kr. 1780,-).",
+          "4 søsken: Kr. 6900,- (rabatt kr. 3860,-).",
+          "Veteraner: Kr. 4980,- pr. par (rabatt kr. 400,-).",
+          "Privatparti, minimum 10 par: Kr. 6600,- pr. par.",
+          "Hip Hop/Streetjazz etc.: Kr. 2690,- pr. person.",
+          "Rekrutter: Kr. 2690,- pr. person.",
+        ],
+      },
+      {
+        title: "Privatundervisning og arrangement",
+        body: [
+          "Privatundervisning for ett par, 45 min. (eks. brudevals): Kr. 1090,-.",
+          "Privatundervisning kurs, 60 min. inntil 20 deltakere: Kr. 5400,-.",
+          "Privatundervisning kurs, 90 min. med pause inntil 20 deltakere: Kr. 7400,-.",
+          "Utdrikningslag, 60 min. rabattert dagtid uspesifisert stil inntil 15 deltakere: Kr. 2800,-.",
+          "Utdrikningslag, 60 min. dagtid valgfri musikk/spesiell koreografi inntil 15 deltakere: Kr. 4200,-.",
+          "Utdrikningslag Royal, 90 minutter valgfri musikk/spesialkoreografi inntil 15 deltakere: Kr. 5800,-.",
+          "Ekstra deltakere på utdrikningslag ut over 15 personer: Kr. 200,- pr. person.",
+        ],
+      },
+      {
+        title: "Dansebursdag",
+        body: [
+          "Dansebursdag for barn, med mat/drikke som medbringes eller bestilles selv: Inntil 10 deltakere med 45 min. dans og 45 min. mat-tid, kr. 3000,-.",
+          "Hvis man er flere enn 15 barn, tilkommer kr. 200,- pr. ekstra barn.",
+          "Dansebursdag for voksne: Inntil 15 deltakere med 60 min. dans og 90 min. mat-tid, kr. 8400,-.",
+          "Hvis man er flere enn 15 deltakere, tilkommer kr. 400,- pr. ekstra person.",
+        ],
+      },
+      {
+        title: "Swing/Salsa",
+        body: [
+          "Kurs 6 uker: Kr. 1790,- pr. person.",
+          "Kurs 12 uker: Kr. 2690,- pr. person / Kr. 4980,- pr. par.",
+        ],
+      },
+      {
+        title: "Gi et dansekurs i gave",
+        body: [
+          "Dansing er både artig og sunt, og passer for folk i alle aldre.",
+          "Et variert kurstilbud gjør det mulig å finne noe for enhver smak, og dansekurs kan være en original gave som gleder og utfordrer mottakeren over tid.",
+          "Gavekort har tre års gyldighet.",
+        ],
+      },
     ],
   },
   {
@@ -125,7 +184,32 @@ export const sitePages: SitePage[] = [
     body: [
       "Tlf: 55 32 00 33",
       "E-post: info@hildemors.no",
-      "Adresse: Torggaten 7, 5015 Bergen.",
+      "Studioadresse: Torggaten 7, ved siden av Hotell Norge. Opp trappen til høyre rett innenfor døren til Bunnpris, 5014 Bergen.",
+    ],
+    sections: [
+      {
+        title: "Åpningstider",
+        body: [
+          "Åpningstider i kurssesongen: Mandag - torsdag kl. 16:30 - 20:30.",
+          "Lørdag kl. 10:30 - 14:00.",
+          "Fredag og søndag stengt.",
+          "Åpningstider i påmeldingsperiode, 1 uke før sesongstart: Mandag - torsdag kl. 16.00 - 20.00.",
+          "Utenom sesong, i kortsesonger og i ferier gjelder egne tider.",
+        ],
+      },
+      {
+        title: "Skal du besøke oss?",
+        body: [
+          "Vi anbefaler parkering i garasjen under Edvards Griegs plass ved Grieghallen.",
+          "Klostergarasjen og Bygarasjen er også gode alternativer.",
+        ],
+      },
+      {
+        title: "Send oss en melding",
+        body: [
+          "Meldingsskjema kan legges inn her når kontaktskjemaet bygges. Første versjon viser kontaktinformasjon tydelig.",
+        ],
+      },
     ],
   },
   {
@@ -133,7 +217,99 @@ export const sitePages: SitePage[] = [
     title: "Betalingsbetingelser",
     intro: "Kursvilkår og betalingsbetingelser for påmelding.",
     body: [
-      "Påmelding er bindende, og vilkårene versjoneres slik at hver påmelding lagrer nøyaktig versjon.",
+      "Påmeldingen er bindende. Dersom man skal meldes av et kurs må dette skje innen første kursuke, skriftlig til info@hildemors.no eller til Hildemors på Facebook.",
+      "Dersom dette ikke er gjort må hele beløpet betales. Utmelding er ikke mulig på kortere kurs som workshop, weekendkurs, 4-ukerskurs og 6-ukerskurs.",
+    ],
+    sections: [
+      {
+        title: "Bytte av kurs",
+        body: [
+          "Man kan bytte kurs i sesongen dersom det er ledig plass på kurset man ønsker å bytte til.",
+          "Eventuelt mellomlegg i pris dersom kurset koster mer enn det du opprinnelig har meldt deg på, må betales.",
+        ],
+      },
+      {
+        title: "Betaling og prøvetime",
+        body: [
+          "Kurset betales i sin helhet ved første oppmøte før man går inn i dansesalen.",
+          "Kurset betales kontant eller med kort i resepsjonen.",
+          "Man kan velge å kun betale kr. 200,- første gang for prøvetime, men da må resterende kursavgift betales i løpet av 2. kursuke.",
+          "Ingen kursavgift refunderes. Hvis du ikke kan stille til start, er du ansvarlig for å informere danseskolen skriftlig i forkant.",
+          "Prøvetime må betales når du har meldt deg på. Hvis du ikke stiller til timen og ikke melder deg ut i løpet av første kursuke, må hele kurset betales.",
+        ],
+      },
+      {
+        title: "Vikarer",
+        body: [
+          "Det hender at Hildemors må benytte vikarer, og stilen til de forskjellige trenerne er sjelden identisk.",
+        ],
+      },
+      {
+        title: "Force Majeure",
+        body: [
+          "Dersom Hildemors blir forhindret fra å utføre tjeneste som følge av arbeidskonflikt eller andre omstendigheter partene ikke råder over, som brann, krig, naturkatastrofer, epidemier/pandemier eller uforutsette militære innkallelser, er dansesenteret fritatt for ansvar.",
+        ],
+      },
+      {
+        title: "Rules & Regulations",
+        body: [
+          "The application is binding and cannot be cancelled unless cancellation is made in writing within the first week of class.",
+          "Short or intensive classes such as workshops, weekend classes, 4-week classes and 6-week classes cannot be cancelled.",
+          "One can change classes within the season as long as the desired class is not fully booked. Any price difference must be covered by the participant.",
+          "The complete fee is paid in full upon arrival for the first lesson. A tryout lesson can be paid first, with remaining amount due within the second week.",
+          "If the dance center is prevented from performing service due to circumstances beyond its control, the dance center is exempt from responsibility.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "etikette",
+    title: "Parketikette",
+    intro:
+      "Enkle kjøreregler på og rundt dansegulvet som gjør dansegleden større for deg selv og andre.",
+    body: [
+      "Som alle andre steder i dagliglivet benytter man noen enkle kjøreregler på og rundt dansegulvet. Det dreier seg i all hovedsak om allmenn høflighet.",
+    ],
+    sections: [
+      {
+        title: "Følg danseretningen",
+        body: [
+          "I danser hvor man beveger seg langs gulvet, slik som vals, tango og samba, må man alltid følge danseretningen.",
+          "Danseretningen går langs veggene mot klokken. I danser som disco/funk, cha cha chá og jive gjelder ikke denne regelen.",
+        ],
+      },
+      {
+        title: "Unngå overkjøring",
+        body: [
+          "Det har ingen hensikt å danse gjennom andre. Det er lov for damen å gi signal til mannen dersom han danser inn i et annet par han ikke ser.",
+          "Krasjer man uforskyldt, er det ingenting i veien for å si unnskyld.",
+        ],
+      },
+      {
+        title: "Sko bør skåne parketten",
+        body: [
+          "Du danser på parkett som er levende materiale og krever vedlikehold.",
+          "Dersom du ikke har spesielle dansesko, bør du reservere et par innesko til formålet. Lærsåler eller ruskinnsåler anbefales.",
+          "Damer på høye hæler må bruke plastknotter utenpå.",
+        ],
+      },
+      {
+        title: "Tyggegummi er tabu",
+        body: [
+          "Av samme grunn som man bør velge sko som skåner parketten, skal man ikke ta med tyggegummi på dansegulvet.",
+        ],
+      },
+      {
+        title: "Vær høflig med partneren",
+        body: [
+          "Når man skal lære å danse, har det ingen hensikt å skjelle ut partneren dersom man ikke får noe til.",
+          "De fleste feil oppstår som følge av samspillet mellom to partnere i pardans. It takes two to tango.",
+        ],
+      },
+      {
+        title: "Ta med godt humør",
+        body: ["Krever ingen forklaring."],
+      },
     ],
   },
 ];
