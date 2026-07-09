@@ -1,0 +1,13 @@
+.next/
+node_modules/
+.mockup-server/
+.superpowers/
+.dev-server/
+
+# Local env
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log

@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hildemors kurs</title>
+  <style>
+    :root {
+      --paper: #fbf8f2;
+      --surface: #ffffff;
+      --ink: #211d1a;
+      --muted: #6e655e;
+      --line: #e5ddd2;
+      --gold: #c59a3d;
+      --blue: #42667a;
+      --sage: #7d8c76;
+      --shadow: 0 16px 42px rgba(47, 36, 28, .10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 22px;
+      margin-bottom: 28px;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      color: #4d443d;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    nav .active {
+      color: var(--blue);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 26px;
+      align-items: stretch;
+      margin-bottom: 26px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 58px;
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 660px;
+      margin: 0;
+      color: #514942;
+      font-size: 18px;
+    }
+
+    .hero-copy {
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-photo {
+      min-height: 300px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background-image: url("https://www.hildemors.no/wp-content/uploads/2019/02/20110825_fotografi_hildemors_landslag_MG_3650.jpg");
+      background-size: cover;
+      background-position: center;
+      box-shadow: var(--shadow);
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin: 0 0 14px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: 0;
+    }
+
+    .section-head a {
+      color: var(--blue);
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .course {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .course-image {
+      height: 150px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .course-body {
+      padding: 15px;
+    }
+
+    .course h3 {
+      margin: 0 0 7px;
+      font-size: 21px;
+      letter-spacing: 0;
+    }
+
+    .course p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: #f1eee4;
+      color: #4c433c;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .cta-band {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      padding: 18px;
+      border: 1px solid #ddd7c6;
+      border-radius: 10px;
+      background: #f1eee4;
+    }
+
+    .cta-band b {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 18px;
+    }
+
+    .cta-band span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 14px;
+      border-radius: 6px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 900px) {
+      main { padding: 16px; }
+      header, .section-head, .cta-band { align-items: flex-start; flex-direction: column; }
+      nav { flex-wrap: wrap; gap: 10px; }
+      .hero, .grid { grid-template-columns: 1fr; }
+      h1 { font-size: 42px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="brand">Hildemors</div>
+      <nav aria-label="Hovedmeny">
+        <span>Hjem</span>
+        <span class="active">Kurs</span>
+        <span>Timeplan</span>
+        <span>Privattimer</span>
+        <span>Om oss</span>
+        <span>Kontakt</span>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <h1>Kurs for alle som vil danse.</h1>
+        <p class="lead">Her samles kurstypene fra den opprinnelige Hildemors-siden. Når du åpner et kurs i timeplanen, henter det beskrivelsen herfra.</p>
+      </div>
+      <div class="hero-photo" aria-hidden="true"></div>
+    </section>
+
+    <div class="section-head">
+      <h2>Velg kurstype</h2>
+      <a href="public-live-schedule.html">Se timeplan</a>
+    </div>
+
+    <section class="grid">
+      <article class="course">
+        <div class="course-image" style="background-image:url('https://www.hildemors.no/wp-content/uploads/2019/02/hip-hop-break.jpg')"></div>
+        <div class="course-body">
+          <h3>Hip Hop, Street og K-Pop</h3>
+          <p>Energi, rytme og koreografier fra moderne dansekultur. K-Pop-kursene bruker korte koreografier kjent fra sosiale medier.</p>
+          <div class="chips"><span class="chip">HipHop</span><span class="chip">Street</span><span class="chip">K-Pop</span><span class="chip">Commercial</span></div>
+        </div>
+      </article>
+
+      <article class="course">
+        <div class="course-image" style="background-image:url('https://www.hildemors.no/wp-content/uploads/2019/02/20110825_fotografi_hildemors_landslag_MG_3650.jpg')"></div>
+        <div class="course-body">
+          <h3>Selskapsdans</h3>
+          <p>Ballroom, latin, swing og salsa for voksne, par og deg som vil lære trygg sosial dans.</p>
+          <div class="chips"><span class="chip">Ballroom</span><span class="chip">Latin</span><span class="chip">Swing/Salsa</span></div>
+        </div>
+      </article>
+
+      <article class="course">
+        <div class="course-image" style="background-image:url('https://www.hildemors.no/wp-content/uploads/2019/02/under-15-%C3%A5r.jpg')"></div>
+        <div class="course-body">
+          <h3>Barnekurs</h3>
+          <p>Trygge kurs for barn med rytme, koordinasjon, danseglede og mestring i sentrum.</p>
+          <div class="chips"><span class="chip">3/5 år</span><span class="chip">5/7 år</span><span class="chip">7/10 år</span></div>
+        </div>
+      </article>
+
+      <article class="course">
+        <div class="course-image" style="background-image:url('https://www.hildemors.no/wp-content/uploads/2019/02/20110825_fotografi_hildemors_landslag_MG_3650.jpg')"></div>
+        <div class="course-body">
+          <h3>Jazz og scene</h3>
+          <p>Jazz, Jazz in Heels og sceniske kurs for deg som vil jobbe med uttrykk, musikalitet og showfølelse.</p>
+          <div class="chips"><span class="chip">Jazz</span><span class="chip">Jazz in Heels</span><span class="chip">Song & Dance</span></div>
+        </div>
+      </article>
+
+      <article class="course">
+        <div class="course-image" style="background-image:url('https://www.hildemors.no/wp-content/uploads/2019/02/under-15-%C3%A5r.jpg')"></div>
+        <div class="course-body">
+          <h3>Ballett og moderne</h3>
+          <p>Klassisk ballett, Ballet Barre og moderne/contemporary for barn, ungdom og voksne.</p>
+          <div class="chips"><span class="chip">Ballet</span><span class="chip">Ballet Barre</span><span class="chip">Contemporary</span></div>
+        </div>
+      </article>
+
+      <article class="course">
+        <div class="course-image" style="background-image:url('https://www.hildemors.no/wp-content/uploads/2019/02/20110825_fotografi_hildemors_landslag_MG_3650.jpg')"></div>
+        <div class="course-body">
+          <h3>Privattimer</h3>
+          <p>Brudevals, privatundervisning og egne opplegg for personer, par eller grupper.</p>
+          <div class="chips"><span class="chip">Brudevals</span><span class="chip">Privatundervisning</span><span class="chip">Gruppe</span></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="cta-band">
+      <div>
+        <b>Vil du se konkrete tider?</b>
+        <span>Timeplanen viser de publiserte kursene for aktivt semester og henter kursbeskrivelse fra kurstypene over.</span>
+      </div>
+      <div class="button">Åpne timeplan</div>
+    </section>
+  </main>
+</body>
+</html>

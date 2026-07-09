@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hildemors admin dashboard</title>
+  <style>
+    :root {
+      --paper: #fbf8f2;
+      --surface: #ffffff;
+      --ink: #211d1a;
+      --muted: #6e655e;
+      --line: #e5ddd2;
+      --gold: #c59a3d;
+      --blue: #42667a;
+      --sage: #7d8c76;
+      --ok: #496f55;
+      --warn: #9b6b2f;
+      --danger: #9a4d40;
+      --shadow: 0 16px 42px rgba(47, 36, 28, .10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.35;
+    }
+
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .app {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      min-height: 760px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    aside {
+      padding: 20px;
+      border-right: 1px solid var(--line);
+      background: #f6f1e9;
+    }
+
+    .brand {
+      margin-bottom: 24px;
+    }
+
+    .brand b {
+      display: block;
+      font-size: 20px;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .nav {
+      display: grid;
+      gap: 6px;
+    }
+
+    .nav div {
+      padding: 10px 11px;
+      border-radius: 7px;
+      color: #4f463f;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .nav .active {
+      background: #fff;
+      color: var(--blue);
+      box-shadow: 0 6px 18px rgba(47, 36, 28, .08);
+    }
+
+    .content {
+      padding: 22px;
+      background: #fff;
+    }
+
+    .top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 4px;
+      font-size: 30px;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 9px;
+      white-space: nowrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 0 13px;
+      border: 1px solid #d9cfc1;
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      font-weight: 850;
+      font-size: 13px;
+    }
+
+    .btn.primary {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .stat {
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbf8f2;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .stat b {
+      display: block;
+      margin-top: 5px;
+      font-size: 24px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--line);
+      background: #fbf8f2;
+    }
+
+    .panel-head b {
+      font-size: 16px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .tabs span {
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .table {
+      display: grid;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1.25fr .65fr .6fr .7fr .62fr;
+      gap: 10px;
+      align-items: center;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .row:last-child { border-bottom: 0; }
+
+    .row.header {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .course b {
+      display: block;
+      font-size: 14px;
+    }
+
+    .course span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      min-height: 25px;
+      padding: 0 8px;
+      border-radius: 999px;
+      background: #f1eee4;
+      color: #3b342e;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .pill.ok { background: #e9f1e8; color: var(--ok); }
+    .pill.warn { background: #f6ecd9; color: var(--warn); }
+    .pill.full { background: #f4e4df; color: var(--danger); }
+
+    .detail {
+      padding: 14px;
+    }
+
+    .selected {
+      display: grid;
+      gap: 12px;
+    }
+
+    .selected-card {
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbf8f2;
+    }
+
+    .selected-card h2 {
+      margin: 0 0 6px;
+      font-size: 20px;
+      letter-spacing: 0;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .meta div {
+      padding: 9px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .meta b {
+      display: block;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .students {
+      display: grid;
+      gap: 8px;
+    }
+
+    .student {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .student b {
+      display: block;
+      font-size: 13px;
+    }
+
+    .student span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .attendance {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 3px;
+      width: 150px;
+    }
+
+    .box {
+      height: 13px;
+      border-radius: 3px;
+      background: #e6dfd5;
+    }
+
+    .box.on { background: var(--sage); }
+    .box.off { background: #c9b7a8; }
+
+    .legend {
+      display: flex;
+      gap: 12px;
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .tiny {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      background: #e6dfd5;
+    }
+
+    .tiny.on { background: var(--sage); }
+    .tiny.off { background: #c9b7a8; }
+
+    @media (max-width: 980px) {
+      main { padding: 12px; }
+      .app { grid-template-columns: 1fr; }
+      aside { border-right: 0; border-bottom: 1px solid var(--line); }
+      .stats, .layout { grid-template-columns: 1fr; }
+      .row { grid-template-columns: 1fr 1fr; }
+      .row.header { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="app">
+      <aside>
+        <div class="brand">
+          <b>Hildemors</b>
+          <span>Admin dashboard</span>
+        </div>
+        <div class="nav">
+          <div class="active">Kurs</div>
+          <div>Påmeldinger</div>
+          <div>Elever</div>
+          <div>Oppmøte</div>
+          <div>Betaling</div>
+          <div>Timeplan</div>
+          <div>Innstillinger</div>
+        </div>
+      </aside>
+
+      <div class="content">
+        <header class="top">
+          <div>
+            <h1>Kursoversikt</h1>
+            <p class="sub">Opprett kurs, styr kapasitet, registrer betaling og følg oppmøte gjennom semesteret.</p>
+          </div>
+          <div class="actions">
+            <span class="btn">Importer</span>
+            <span class="btn primary">Nytt kurs</span>
+          </div>
+        </header>
+
+        <section class="stats">
+          <div class="stat"><span>Aktive kurs</span><b>32</b></div>
+          <div class="stat"><span>Påmeldte elever</span><b>418</b></div>
+          <div class="stat"><span>Venteliste</span><b>27</b></div>
+          <div class="stat"><span>Ubetalt</span><b>43</b></div>
+        </section>
+
+        <section class="layout">
+          <div class="panel">
+            <div class="panel-head">
+              <b>Høst 2026</b>
+              <div class="tabs"><span>Alle</span><span>Barn</span><span>Voksne</span><span>Ledige</span></div>
+            </div>
+            <div class="table">
+              <div class="row header">
+                <span>Kurs</span><span>Tid</span><span>Kapasitet</span><span>Betaling</span><span>Status</span>
+              </div>
+              <div class="row">
+                <div class="course"><b>Hip Hop 10-13</b><span>Instruktør: Marit</span></div>
+                <span>Tir 17:00</span>
+                <span>18 / 20</span>
+                <span><span class="pill warn">5 ubetalt</span></span>
+                <span><span class="pill ok">Ledig</span></span>
+              </div>
+              <div class="row">
+                <div class="course"><b>Selskapsdans begynner</b><span>Instruktør: Jane</span></div>
+                <span>Ons 19:15</span>
+                <span>24 / 24</span>
+                <span><span class="pill ok">Betalt</span></span>
+                <span><span class="pill full">Fullt</span></span>
+              </div>
+              <div class="row">
+                <div class="course"><b>Barnekurs 4-7</b><span>Instruktør: Anne Line</span></div>
+                <span>Lør 11:00</span>
+                <span>14 / 16</span>
+                <span><span class="pill warn">3 ubetalt</span></span>
+                <span><span class="pill ok">Ledig</span></span>
+              </div>
+              <div class="row">
+                <div class="course"><b>Jazz in Heels</b><span>Instruktør: Myrna</span></div>
+                <span>Tor 20:00</span>
+                <span>12 / 18</span>
+                <span><span class="pill warn">2 ubetalt</span></span>
+                <span><span class="pill ok">Ledig</span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <b>Kursdetalj</b>
+              <div class="tabs"><span>Rediger</span><span>Eksporter</span></div>
+            </div>
+            <div class="detail selected">
+              <div class="selected-card">
+                <h2>Hip Hop 10-13</h2>
+                <p class="sub">Tirsdag 17:00 · 12 uker · sal 2</p>
+                <div class="meta">
+                  <div><b>18 / 20</b>Kapasitet</div>
+                  <div><b>5</b>Ubetalt</div>
+                  <div><b>2</b>Ledige plasser</div>
+                  <div><b>0</b>Venteliste</div>
+                </div>
+              </div>
+
+              <div>
+                <div class="panel-head" style="padding:0 0 10px;background:#fff;border:0">
+                  <b>Elever og oppmøte</b>
+                  <div class="tabs"><span>Uke 4</span><span>Registrer</span></div>
+                </div>
+                <div class="students">
+                  <div class="student">
+                    <div><b>Emma Nilsen</b><span>Betalt · foresatt: Kari</span></div>
+                    <div class="attendance">
+                      <i class="box on"></i><i class="box on"></i><i class="box on"></i><i class="box off"></i><i class="box"></i><i class="box"></i><i class="box"></i><i class="box"></i><i class="box"></i><i class="box"></i><i class="box"></i><i class="box"></i>
+                    </div>
+                  </div>
+                  <div class="student">
+                    <div><b>Jonas Berg</b><span>Ubetalt · foresatt: Morten</span></div>
+                    <div class="attendance">
+                      <i class="box on"></i><i class="box on"></i><i class="box off"></i><i class="box on"></i><i class="box"></i><i class="box"></i><i class="box"></i><i class="box"></i><i class="box"></i><i class="box"></i><i class="box"></i><i class="box"></i>
+                    </div>
+                  </div>
+                  <div class="student">
+                    <div><b>Sofia Haugen</b><span>Betalt · foresatt: Linn</span></div>
+                    <div class="attendance">
+                      <i class="box on"></i><i class="box on"></i><i class="box on"></i><i class="box on"></i><i class="box"></i><i class="box"></i><i class="box"></i><i class="box"></i><i class="box"></i><i class="box"></i><i class="box"></i><i class="box"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="legend">
+                  <span><i class="tiny on"></i>Møtt</span>
+                  <span><i class="tiny off"></i>Fravær</span>
+                  <span><i class="tiny"></i>Ikke holdt</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

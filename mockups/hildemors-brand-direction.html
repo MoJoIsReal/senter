@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hildemors designretning</title>
+  <style>
+    :root {
+      --paper: #fbf8f2;
+      --surface: #ffffff;
+      --ink: #211d1a;
+      --muted: #6e655e;
+      --line: #e5ddd2;
+      --gold: #c59a3d;
+      --blue: #42667a;
+      --sage: #7d8c76;
+      --clay: #9b6b50;
+      --shadow: 0 18px 45px rgba(47, 36, 28, .12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+
+    .note {
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .shell {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 28px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, .92);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 230px;
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 20px;
+      line-height: 1.05;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: #443b35;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 14px;
+      border-radius: 6px;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 750;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 420px;
+      gap: 34px;
+      padding: 44px 34px 26px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border: 1px solid #ded3c5;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    h1 {
+      max-width: 680px;
+      margin: 18px 0 14px;
+      font-size: clamp(46px, 7vw, 76px);
+      line-height: .96;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 620px;
+      margin: 0;
+      color: #514942;
+      font-size: 18px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border-radius: 6px;
+      border: 1px solid #d9cfc1;
+      background: #fff;
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .button.primary {
+      border-color: var(--gold);
+      background: var(--gold);
+      color: #1e1711;
+    }
+
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 28px;
+      max-width: 680px;
+    }
+
+    .quick-card {
+      min-height: 92px;
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .quick-card b {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 15px;
+    }
+
+    .quick-card span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .visual {
+      display: grid;
+      gap: 12px;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 10px;
+    }
+
+    .photo-grid img {
+      width: 100%;
+      height: 158px;
+      object-fit: cover;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #eee;
+    }
+
+    .photo-grid img:first-child {
+      height: 326px;
+      grid-row: span 2;
+    }
+
+    .finder {
+      padding: 16px;
+      border: 1px solid #dfd4c6;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 14px 34px rgba(47, 36, 28, .10);
+    }
+
+    .finder-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .kicker {
+      margin-bottom: 3px;
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .finder-title {
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .term {
+      padding: 7px 8px;
+      border-radius: 6px;
+      background: #f3eadb;
+      color: #5e4821;
+      font-size: 12px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .fields {
+      display: grid;
+      gap: 9px;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+
+    .field {
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fbf8f2;
+    }
+
+    .field b {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    .field span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .finder-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border-radius: 7px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .schedule-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin: 0 34px 34px;
+      padding: 14px 16px;
+      border: 1px solid #ddd7c6;
+      border-radius: 9px;
+      background: #f1eee4;
+      color: #3b342e;
+    }
+
+    .schedule-strip b {
+      color: var(--ink);
+    }
+
+    .schedule-strip a {
+      color: var(--blue);
+      font-weight: 850;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .palette {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .swatch {
+      min-height: 78px;
+      padding: 10px;
+      border-radius: 8px;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .swatch.light {
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    @media (max-width: 900px) {
+      .page { padding: 14px; }
+      .topbar { align-items: flex-start; flex-direction: column; }
+      nav { flex-wrap: wrap; gap: 10px; }
+      .hero { grid-template-columns: 1fr; padding: 28px 18px 18px; }
+      .quick-links { grid-template-columns: 1fr; }
+      .schedule-strip { margin: 0 18px 20px; align-items: flex-start; flex-direction: column; }
+      .palette { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <p class="note">Designretning basert på dagens nettside, Instagram/Facebook-signalene og ønsket om B + A: merkevarefølelse først, kursfinner rett ved.</p>
+
+    <section class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <img class="brand-mark" src="https://www.hildemors.no/wp-content/uploads/2019/02/logo.jpg" alt="">
+          <div>
+            <strong>Hildemors</strong>
+            <span>Danseskolen i Bergen sentrum</span>
+          </div>
+        </div>
+        <nav aria-label="Hovedmeny">
+          <span>Kurs</span>
+          <span>Timeplan</span>
+          <span>Show</span>
+          <span>Pris</span>
+          <span>Kontakt</span>
+          <span class="nav-cta">Påmelding</span>
+        </nav>
+      </header>
+
+      <div class="hero">
+        <div>
+          <span class="eyebrow">Torggaten 7 · kurs fra 4 år til voksne</span>
+          <h1>Dans med trygghet, energi og glede.</h1>
+          <p class="lead">Hildemors er et varmt og merittert dansemiljø midt i Bergen. Finn kurs i hip hop, selskapsdans, jazz, ballett, musikal og privattimer.</p>
+
+          <div class="actions">
+            <span class="button primary">Finn ditt kurs</span>
+            <span class="button">Se levende timeplan</span>
+          </div>
+
+          <div class="quick-links">
+            <div class="quick-card">
+              <b>Barn og ungdom</b>
+              <span>Mestring, rytme og danseglede fra første time.</span>
+            </div>
+            <div class="quick-card">
+              <b>Voksne og par</b>
+              <span>Selskapsdans, salsa, swing og brudevals.</span>
+            </div>
+            <div class="quick-card">
+              <b>Show og scene</b>
+              <span>Kursmiljø med oppvisninger og ekte danseerfaring.</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="visual">
+          <div class="photo-grid">
+            <img src="https://www.hildemors.no/wp-content/uploads/2019/02/20110825_fotografi_hildemors_landslag_MG_3650.jpg" alt="">
+            <img src="https://www.hildemors.no/wp-content/uploads/2019/02/under-15-%C3%A5r.jpg" alt="">
+            <img src="https://www.hildemors.no/wp-content/uploads/2019/02/hip-hop-break.jpg" alt="">
+          </div>
+
+          <div class="finder">
+            <div class="finder-head">
+              <div>
+                <div class="kicker">Kursfinner</div>
+                <div class="finder-title">Hva vil du danse?</div>
+              </div>
+              <span class="term">Høst 2026</span>
+            </div>
+            <div class="fields">
+              <div class="field-row">
+                <div class="field"><b>Hvem?</b><span>Barn, ungdom, voksen</span></div>
+                <div class="field"><b>Nivå</b><span>Nybegynner eller videre</span></div>
+              </div>
+              <div class="field"><b>Stil</b><span>Hip hop, ballroom, jazz, ballett, latin, musikal</span></div>
+              <div class="field-row">
+                <div class="field"><b>Dag</b><span>Man-fre eller helg</span></div>
+                <div class="field"><b>Status</b><span>Ledig eller venteliste</span></div>
+              </div>
+              <div class="finder-cta">Vis passende kurs</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="schedule-strip">
+        <span><b>Levende timeplan:</b> PDF erstattes med søkbare kurs, ledige plasser, alder, nivå og instruktør.</span>
+        <a href="#">Åpne timeplan</a>
+      </div>
+    </section>
+
+    <section class="palette" aria-label="Fargepalett">
+      <div class="swatch light" style="background:#fbf8f2">Varm off-white<br>#fbf8f2</div>
+      <div class="swatch" style="background:#211d1a">Dansesvart<br>#211d1a</div>
+      <div class="swatch" style="background:#42667a">Bergen blå<br>#42667a</div>
+      <div class="swatch" style="background:#c59a3d;color:#211d1a">Scene-gull<br>#c59a3d</div>
+      <div class="swatch" style="background:#7d8c76">Rolig grønn<br>#7d8c76</div>
+    </section>
+  </main>
+</body>
+</html>
