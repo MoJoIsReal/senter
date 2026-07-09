@@ -4,6 +4,7 @@ export const sitePages: SitePage[] = [
   {
     slug: "om-oss",
     title: "Om oss",
+    image: "/images/historie.webp",
     intro:
       "Hildemors Dansesenter er en danseskole i Bergen med røtter tilbake til 1947.",
     body: [
@@ -14,6 +15,7 @@ export const sitePages: SitePage[] = [
     sections: [
       {
         title: "Historien bak Hildemors Dansesenter",
+        image: "/images/historie.webp",
         body: [
           "Hildemors Dansesenter ble grunnlagt av Hildemor Svenkerud høsten 1947, og de første kursene ble arrangert våren 1948.",
           "Hildemor var bare 19 år gammel da hun grunnla skolen, og hun tok sin utdannelse ved Svaes danseskole i Oslo. De første årene underviste Hildemor i Standard danser og Latinamerikanske danser for barn fra 3 år og oppover, i tillegg til at hun hadde voksenkurs. I ettertid har danseskolen utvidet til å omfatte mange andre danseformer.",
@@ -29,6 +31,7 @@ export const sitePages: SitePage[] = [
   {
     slug: "privattimer",
     title: "Privattimer",
+    image: "/images/brudevals.webp",
     intro:
       "Privatundervisning for brudevals, bryllupsgjester, utdrikningslag, konkurransedansere og egne arrangementer.",
     body: [
@@ -38,6 +41,7 @@ export const sitePages: SitePage[] = [
     sections: [
       {
         title: "Brudevals",
+        image: "/images/brudevals.webp",
         body: [
           "Mange tar privattimer for å forberede brudevalsen. Du trenger ingen erfaring, og instruktørene tilpasser undervisningen til parets bakgrunn.",
           "De vanligste valgene er engelsk vals og wienervals. Den engelske valsen er langsom og elegant, mens wienervalsen er raskere og mer tradisjonell.",
@@ -46,6 +50,7 @@ export const sitePages: SitePage[] = [
       },
       {
         title: "Dansekurs for bryllupsgjester",
+        image: "/images/kurs_for_bryllupsgjester.webp",
         body: [
           "Noen inviterer også gjestene på dansekurs, enten før bryllupet eller mens brudeparet er hos fotografen.",
           "Opplegget kan gjøres enkelt, sosialt og morsomt slik at gjestene får en felles opplevelse før festen.",
@@ -53,6 +58,7 @@ export const sitePages: SitePage[] = [
       },
       {
         title: "Utdrikningslag",
+        image: "/images/utdrikkning.webp",
         body: [
           "Hildemors kan lage ferdige eller skreddersydde opplegg for utdrikningslag.",
           "Aktuelle stiler kan være hip hop, salsa, morsomme koreografier, street dance eller latin-inspirerte timer. Poenget er at alle skal få det til og ha det gøy.",
@@ -60,6 +66,7 @@ export const sitePages: SitePage[] = [
       },
       {
         title: "Privattimer for konkurransedansere",
+        image: "/images/privattimer_konkurranse.webp",
         body: [
           "Barn og unge som går videre til konkurransedans kan ta privattimer med trenere ved Hildemors.",
           "Privattimer kan brukes til sportsdans, standard/latin, freestyle/discojazz, hip hop, streetdance, jazz, moderne, klassisk og andre danseformer. Mengden tilpasses ambisjon, nivå, alder og ønsker.",
@@ -67,6 +74,7 @@ export const sitePages: SitePage[] = [
       },
       {
         title: "Andre typer undervisning",
+        image: "/images/andretyper.webp",
         body: [
           "Privatundervisning kan også brukes til blåtur, jubileer, vennegrupper, firma eller private dansepartier.",
           "Hildemors kan hjelpe med et opplegg som passer gruppen og anledningen.",
@@ -77,6 +85,7 @@ export const sitePages: SitePage[] = [
   {
     slug: "show",
     title: "Danseshow",
+    image: "/images/showgruppen.webp",
     intro:
       "Hildemors Dansesenter har lang erfaring med danseshow i ulike danseformer.",
     body: [
@@ -86,6 +95,7 @@ export const sitePages: SitePage[] = [
     sections: [
       {
         title: "Show i standard- og latinamerikanske danser",
+        image: "/images/show_standard_latin.webp",
         body: [
           "Sportsdanserne fra HILL er sterke innen norsk sportsdans, og flere par holder høyt nivå i aldersbestemte klasser.",
           "Danserne er spesialisert i de fem standarddansene engelsk vals, tango, wienervals, slow foxtrot og quickstep, og de fem latinamerikanske dansene samba, cha-cha-cha, rumba, paso doble og jive.",
@@ -94,6 +104,7 @@ export const sitePages: SitePage[] = [
       },
       {
         title: "Showdansgruppen",
+        image: "/images/showgruppen.webp",
         body: [
           "Showgruppen består i hovedsak av trenere og de beste elevene ved Hildemors Dansesenter.",
           "De danser commercial, hip hop, R&B og andre dansetyper man typisk ser på TV. Oppvisninger fra showdansgruppen passer godt for et yngre publikum.",
@@ -113,6 +124,7 @@ export const sitePages: SitePage[] = [
   {
     slug: "pris",
     title: "Pris",
+    image: "/images/gave.webp",
     intro:
       "Kurspriser, søskenmoderasjon, privattimer, utdrikningslag, swing/salsa og gavekort.",
     body: [
@@ -169,6 +181,7 @@ export const sitePages: SitePage[] = [
       },
       {
         title: "Gi et dansekurs i gave",
+        image: "/images/gave.webp",
         body: [
           "Dansing er både artig og sunt, og passer for folk i alle aldre.",
           "Et variert kurstilbud gjør det mulig å finne noe for enhver smak, og dansekurs kan være en original gave som gleder og utfordrer mottakeren over tid.",

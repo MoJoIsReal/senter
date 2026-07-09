@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { courseTypes, getCourseType } from "@/lib/data/courseTypes";
 import { scheduleDays } from "@/lib/data/seasons";
 import type { ScheduledCourse, Season } from "@/lib/types";
@@ -17,6 +17,8 @@ const colorClass: Record<string, string> = {
 
 export function ScheduleGrid({ season }: { season: Season }) {
   const [selected, setSelected] = useState<ScheduledCourse | null>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
   const selectedType = selected ? getCourseType(selected.courseTypeId) : null;
 
   const coursesByDay = useMemo(
@@ -30,6 +32,24 @@ export function ScheduleGrid({ season }: { season: Season }) {
       })),
     [season.courses],
   );
+
+  useEffect(() => {
+    if (!selected) {
+      triggerRef.current?.focus();
+      return;
+    }
+
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSelected(null);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [selected]);
 
   return (
     <>
@@ -58,7 +78,10 @@ export function ScheduleGrid({ season }: { season: Season }) {
                     <button
                       className={`schedule-course ${colorClass[type.category]}`}
                       key={course.id}
-                      onClick={() => setSelected(course)}
+                      onClick={(event) => {
+                        triggerRef.current = event.currentTarget;
+                        setSelected(course);
+                      }}
                       type="button"
                     >
                       <time>{course.time}</time>
@@ -105,6 +128,7 @@ export function ScheduleGrid({ season }: { season: Season }) {
                 <button
                   className="button secondary"
                   onClick={() => setSelected(null)}
+                  ref={closeButtonRef}
                   type="button"
                 >
                   Lukk

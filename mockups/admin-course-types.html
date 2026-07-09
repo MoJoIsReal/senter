@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hildemors admin kurstyper</title>
+  <style>
+    :root {
+      --paper: #fbf8f2;
+      --surface: #ffffff;
+      --ink: #211d1a;
+      --muted: #6e655e;
+      --line: #e5ddd2;
+      --blue: #42667a;
+      --gold: #c59a3d;
+      --shadow: 0 16px 42px rgba(47, 36, 28, .10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.35;
+    }
+
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .app {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      min-height: 760px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    aside {
+      padding: 20px;
+      border-right: 1px solid var(--line);
+      background: #f6f1e9;
+    }
+
+    .brand {
+      margin-bottom: 24px;
+    }
+
+    .brand b {
+      display: block;
+      font-size: 20px;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .nav {
+      display: grid;
+      gap: 6px;
+    }
+
+    .nav div {
+      padding: 10px 11px;
+      border-radius: 7px;
+      color: #4f463f;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .nav .active {
+      background: #fff;
+      color: var(--blue);
+      box-shadow: 0 6px 18px rgba(47, 36, 28, .08);
+    }
+
+    .content {
+      padding: 22px;
+      background: #fff;
+    }
+
+    .top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 5px;
+      font-size: 30px;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 0 13px;
+      border: 1px solid #d9cfc1;
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      font-weight: 850;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .btn.primary {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 360px minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .panel-head {
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--line);
+      background: #fbf8f2;
+      font-weight: 900;
+    }
+
+    .type-list {
+      display: grid;
+    }
+
+    .type-row {
+      display: grid;
+      gap: 3px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .type-row:last-child { border-bottom: 0; }
+    .type-row.active { background: #f1eee4; }
+
+    .type-row b {
+      font-size: 14px;
+    }
+
+    .type-row span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .editor {
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .field {
+      padding: 11px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .field b {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .textarea {
+      min-height: 120px;
+      line-height: 1.5;
+    }
+
+    .link-box {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 11px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbf8f2;
+      font-size: 13px;
+    }
+
+    .link-box b {
+      display: block;
+      font-size: 14px;
+    }
+
+    .link-box span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 920px) {
+      main { padding: 12px; }
+      .app, .layout { grid-template-columns: 1fr; }
+      aside { border-right: 0; border-bottom: 1px solid var(--line); }
+      .top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="app">
+      <aside>
+        <div class="brand">
+          <b>Hildemors</b>
+          <span>Admin dashboard</span>
+        </div>
+        <div class="nav">
+          <div>Kurs i timeplan</div>
+          <div class="active">Kurstype-innhold</div>
+          <div>Semester og timeplan</div>
+          <div>Påmeldinger</div>
+          <div>Oppmøte</div>
+          <div>Betaling</div>
+          <div>Sider</div>
+        </div>
+      </aside>
+
+      <div class="content">
+        <header class="top">
+          <div>
+            <h1>Kurstype-innhold</h1>
+            <p class="sub">Dette er redaksjonelle beskrivelser som vises i public Kurs-tab og på kursdetaljer fra timeplanen.</p>
+          </div>
+          <span class="btn primary">Ny kurstype</span>
+        </header>
+
+        <section class="layout">
+          <div class="panel">
+            <div class="panel-head">Kurstyper</div>
+            <div class="type-list">
+              <div class="type-row active"><b>K-Pop</b><span>Brukes av 2 kurs i Høst 2026</span></div>
+              <div class="type-row"><b>Hip Hop</b><span>Brukes av 3 kurs</span></div>
+              <div class="type-row"><b>Selskapsdans</b><span>Brukes av 5 kurs</span></div>
+              <div class="type-row"><b>Barnekurs</b><span>Brukes av 3 kurs</span></div>
+              <div class="type-row"><b>Jazz</b><span>Brukes av 1 kurs</span></div>
+              <div class="type-row"><b>Ballett</b><span>Brukes av 3 kurs</span></div>
+              <div class="type-row"><b>Privattimer</b><span>Egen public side + timeplan</span></div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">Rediger K-Pop</div>
+            <div class="editor">
+              <div class="field"><b>Navn</b>K-Pop</div>
+              <div class="field"><b>Kort ingress</b>Korte koreografier kjent fra sosiale medier, K-POP og Shuffle.</div>
+              <div class="field textarea"><b>Beskrivelse</b>Disse kursene baserer seg på enkle, korte koreografier kjent fra sosiale medier og deriblant TikTok.<br><br>Kursene inneholder blant annet K-POP og Shuffle og man lærer en dans hver gang, eventuelt over to ganger hvis det er et lengre stykke koreografi.<br><br>Begynnerkursene krever ingen forkunnskaper.</div>
+              <div class="field"><b>Bilde</b>Velg bilde fra Hildemors-biblioteket</div>
+              <div class="link-box">
+                <div><b>K-Pop torsdag 18:40</b><span>Timeplanrad · Under 14 år</span></div>
+                <span class="btn">Åpne</span>
+              </div>
+              <div class="link-box">
+                <div><b>K-Pop torsdag 19:25</b><span>Timeplanrad · Ungdom/voksen</span></div>
+                <span class="btn">Åpne</span>
+              </div>
+              <div style="display:flex;gap:8px;justify-content:flex-end">
+                <span class="btn">Forhåndsvis</span>
+                <span class="btn primary">Lagre</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

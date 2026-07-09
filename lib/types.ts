@@ -48,9 +48,11 @@ export type SitePage = {
   slug: string;
   title: string;
   intro: string;
+  image?: string;
   body: string[];
   sections?: Array<{
     title: string;
+    image?: string;
     body: string[];
   }>;
 };

@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hildemors levende timeplan</title>
+  <style>
+    :root {
+      --paper: #fbf8f2;
+      --surface: #ffffff;
+      --ink: #211d1a;
+      --muted: #6e655e;
+      --line: #e5ddd2;
+      --gold: #c59a3d;
+      --blue: #42667a;
+      --sage: #7d8c76;
+      --aqua: #28c7c5;
+      --cyan: #24b8d8;
+      --violet: #b98be8;
+      --pink: #e989bd;
+      --rose: #d54d81;
+      --mint: #a8e7e4;
+      --shadow: 0 16px 42px rgba(47, 36, 28, .10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.35;
+    }
+
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-end;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 42px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .season {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .season span {
+      padding: 9px 11px;
+      border-radius: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .season .active {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .schedule {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .schedule-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 17px 18px;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .schedule-head b {
+      display: block;
+      font-size: 19px;
+    }
+
+    .schedule-head span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(150px, 1fr));
+      border-bottom: 1px solid var(--line);
+    }
+
+    .day {
+      min-height: 0;
+      border-right: 1px solid var(--line);
+      background: #fcfaf7;
+    }
+
+    .day:last-child { border-right: 0; }
+
+    .day-head {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      padding: 10px;
+      border-bottom: 1px solid var(--line);
+      background: #f1eee4;
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .day-head span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .slots {
+      display: grid;
+      gap: 7px;
+      padding: 9px;
+    }
+
+    .course {
+      min-height: 64px;
+      padding: 8px;
+      border: 1px solid rgba(33, 29, 26, .18);
+      border-radius: 8px;
+      color: #15110f;
+      box-shadow: 0 8px 16px rgba(47, 36, 28, .08);
+      cursor: pointer;
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+
+    .course:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 22px rgba(47, 36, 28, .14);
+    }
+
+    .course time {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .course b {
+      display: block;
+      font-size: 13px;
+      line-height: 1.1;
+    }
+
+    .course span {
+      display: block;
+      margin-top: 5px;
+      font-size: 11px;
+      font-weight: 760;
+    }
+
+    .aqua { background: var(--aqua); }
+    .cyan { background: var(--cyan); }
+    .violet { background: var(--violet); }
+    .pink { background: var(--pink); }
+    .rose { background: var(--rose); color: #fff; }
+    .mint { background: var(--mint); }
+    .gold { background: #e8cb77; }
+    .sage { background: #b8c4aa; }
+
+    .footer {
+      display: grid;
+      gap: 7px;
+      padding: 13px 18px;
+      background: #f1eee4;
+      text-align: center;
+    }
+
+    .notice {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .price {
+      font-weight: 850;
+      font-size: 14px;
+    }
+
+    .mobile-list {
+      display: none;
+      gap: 10px;
+      padding: 12px;
+    }
+
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: none;
+      background: rgba(33, 29, 26, .32);
+      padding: 22px;
+    }
+
+    .drawer-backdrop.open {
+      display: grid;
+      place-items: center;
+    }
+
+    .course-detail {
+      width: min(640px, 100%);
+      max-height: min(760px, 92vh);
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 24px 70px rgba(33, 29, 26, .24);
+    }
+
+    .detail-image {
+      height: 180px;
+      background-image: url("https://www.hildemors.no/wp-content/uploads/2019/02/hip-hop-break.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .detail-body {
+      padding: 20px;
+    }
+
+    .detail-kicker {
+      margin-bottom: 7px;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .detail-body h2 {
+      margin: 0 0 6px;
+      font-size: 30px;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .detail-meta {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .detail-body p {
+      margin: 0 0 13px;
+      color: #3e352f;
+      font-size: 15px;
+    }
+
+    .detail-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .detail-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 14px;
+      border: 1px solid #d9cfc1;
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 850;
+    }
+
+    .detail-button.primary {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #fff;
+    }
+
+    @media (max-width: 980px) {
+      main { padding: 14px; }
+      .hero { align-items: stretch; flex-direction: column; }
+      .grid { display: none; }
+      .mobile-list { display: grid; }
+      .course { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <h1>Timeplan Høst 2026</h1>
+        <p class="lead">Levende versjon av den opprinnelige PDF-timeplanen for Høst 2026. Kursene kommer fra admin-dashboardet og publiseres fra aktivt semester.</p>
+      </div>
+      <div class="season" aria-label="Semester">
+        <span class="active">Høst 2026</span>
+        <span>Vår 2027 åpner snart</span>
+      </div>
+    </section>
+
+    <section class="schedule">
+      <div class="schedule-head">
+        <div>
+          <b>Ukeplan</b>
+          <span>Start uke 36 · Høstferie uke 41 · Sesongslutt uke 48</span>
+        </div>
+        <span>Endringer kan forekomme</span>
+      </div>
+
+      <div class="grid">
+        <div class="day">
+          <div class="day-head">Mandag<span>Start 31/8</span></div>
+          <div class="slots">
+            <article class="course violet"><time>15:30</time><b>Brudevals</b><span>Privat/gruppe</span></article>
+            <article class="course aqua"><time>16:25</time><b>Commercial Girly Style</b><span>10-15 år</span></article>
+            <article class="course cyan"><time>17:10</time><b>Street</b><span>6-10 år · Begynnere</span></article>
+            <article class="course rose"><time>17:55</time><b>Latin solo (tidl. Ladies)</b><span>Begynnere</span></article>
+            <article class="course rose"><time>18:50</time><b>Latin solo (tidl. Ladies)</b><span>Fortsettere</span></article>
+          </div>
+        </div>
+
+        <div class="day">
+          <div class="day-head">Tirsdag<span>Start 1/9</span></div>
+          <div class="slots">
+            <article class="course aqua"><time>16:00</time><b>HipHop</b><span>11-16 år</span></article>
+            <article class="course cyan"><time>16:50</time><b>Sportsdans</b><span>Rekruttering 2-3</span></article>
+            <article class="course cyan"><time>17:35</time><b>Sportsdans</b><span>10-15 · Rekruttering 1</span></article>
+            <article class="course violet"><time>18:20</time><b>Ballroom/Latin voksen par</b><span>Begynnere</span></article>
+            <article class="course violet"><time>19:15</time><b>Ballroom/Latin voksen par</b><span>Fortsettere</span></article>
+            <article class="course violet"><time>20:10</time><b>Ballroom/Latin voksen par</b><span>Fortsetter 2&3</span></article>
+          </div>
+        </div>
+
+        <div class="day">
+          <div class="day-head">Onsdag<span>Start 2/9</span></div>
+          <div class="slots">
+            <article class="course rose"><time>16:00</time><b>Ballet Barre</b><span>Ungd/voksen</span></article>
+            <article class="course pink"><time>16:55</time><b>Moderne/Contemporary</b><span>Ungdom/voksen</span></article>
+            <article class="course rose"><time>17:50</time><b>Ballet</b><span>6-11 år</span></article>
+            <article class="course pink"><time>18:35</time><b>Jazz in Heels</b><span>Ungdom/voksen</span></article>
+            <article class="course violet"><time>19:30</time><b>Voksen/ungdom</b><span>Begynnere</span></article>
+            <article class="course violet"><time>20:25</time><b>Swing/Salsa</b><span>Begynnere</span></article>
+          </div>
+        </div>
+
+        <div class="day">
+          <div class="day-head">Torsdag<span>Start 3/9</span></div>
+          <div class="slots">
+            <article class="course aqua"><time>16:00</time><b>Commercial</b><span>Ung/voksen · Begynnere</span></article>
+            <article class="course aqua"><time>16:55</time><b>Hip Hop & Street</b><span>Fortsettere 7-11 år</span></article>
+            <article class="course aqua"><time>17:40</time><b>Commercial</b><span>Ung/voksen · Fortsettere</span></article>
+            <article class="course mint" data-title="K-Pop" data-meta="Torsdag 18:40 · Under 14 år" data-copy="Disse kursene baserer seg på enkle, korte koreografier kjent fra sosiale medier og deriblant Tik Tok.|Kursene inneholder blant annet K-POP og Shuffle og man lærer en dans hver gang, eventuelt over to ganger hvis det er et lengre stykke koreografi.|Begynnerkursene krever ingen forkunnskaper."><time>18:40</time><b>K-Pop</b><span>Under 14 år</span></article>
+            <article class="course mint" data-title="K-Pop" data-meta="Torsdag 19:25 · Ungdom/voksen" data-copy="Disse kursene baserer seg på enkle, korte koreografier kjent fra sosiale medier og deriblant Tik Tok.|Kursene inneholder blant annet K-POP og Shuffle og man lærer en dans hver gang, eventuelt over to ganger hvis det er et lengre stykke koreografi.|Begynnerkursene krever ingen forkunnskaper."><time>19:25</time><b>K-Pop</b><span>Ungdom/voksen</span></article>
+            <article class="course aqua"><time>20:20</time><b>Hip Hop</b><span>Ungdom/voksen</span></article>
+          </div>
+        </div>
+
+        <div class="day">
+          <div class="day-head">Fredag<span>Start 4/9</span></div>
+          <div class="slots">
+            <article class="course cyan"><time>16:15</time><b>Sportsdans</b><span>Rekruttering 2-3</span></article>
+            <article class="course sage"><time>17:00</time><b>Solo Sportsdans</b><span>Ungdom</span></article>
+            <article class="course rose"><time>17:45</time><b>Ballet Lukket undervisning</b><span>Kun inviterte</span></article>
+            <article class="course violet"><time>18:45</time><b>Åpen dansekveld</b><span>Kr. 50,- pr person</span></article>
+            <article class="course violet"><time>19:30</time><b>Åpen dansekveld</b><span>Fortsetter</span></article>
+          </div>
+        </div>
+
+        <div class="day">
+          <div class="day-head">Lørdag<span>Start 5/9</span></div>
+          <div class="slots">
+            <article class="course violet"><time>11:00</time><b>3/5 år</b><span>Begynnere</span></article>
+            <article class="course violet"><time>11:45</time><b>5/7 år</b><span>Begynnere/Fortsettere</span></article>
+            <article class="course violet"><time>12:35</time><b>7/10 år</b><span>Sportsdans/pardans</span></article>
+          </div>
+        </div>
+      </div>
+
+      <div class="mobile-list">
+        <article class="course violet"><time>Mandag 15:30</time><b>Brudevals</b><span>Trykk for detaljer og påmelding</span></article>
+        <article class="course aqua"><time>Mandag 16:25</time><b>Commercial Girly Style</b><span>10-15 år</span></article>
+        <article class="course cyan"><time>Mandag 17:10</time><b>Street</b><span>6-10 år · Begynnere</span></article>
+        <article class="course rose"><time>Mandag 17:55</time><b>Latin solo (tidl. Ladies)</b><span>Begynnere</span></article>
+        <article class="course rose"><time>Mandag 18:50</time><b>Latin solo (tidl. Ladies)</b><span>Fortsettere</span></article>
+        <article class="course aqua"><time>Tirsdag 16:00</time><b>HipHop</b><span>11-16 år</span></article>
+        <article class="course cyan"><time>Tirsdag 16:50</time><b>Sportsdans</b><span>Rekruttering 2-3</span></article>
+        <article class="course cyan"><time>Tirsdag 17:35</time><b>Sportsdans</b><span>10-15 · Rekruttering 1</span></article>
+        <article class="course violet"><time>Tirsdag 18:20</time><b>Ballroom/Latin voksen par</b><span>Begynnere</span></article>
+        <article class="course violet"><time>Tirsdag 19:15</time><b>Ballroom/Latin voksen par</b><span>Fortsettere</span></article>
+        <article class="course violet"><time>Tirsdag 20:10</time><b>Ballroom/Latin voksen par</b><span>Fortsetter 2&3</span></article>
+        <article class="course rose"><time>Onsdag 16:00</time><b>Ballet Barre</b><span>Ungd/voksen</span></article>
+        <article class="course pink"><time>Onsdag 16:55</time><b>Moderne/Contemporary</b><span>Ungdom/voksen</span></article>
+        <article class="course rose"><time>Onsdag 17:50</time><b>Ballet</b><span>6-11 år</span></article>
+        <article class="course pink"><time>Onsdag 18:35</time><b>Jazz in Heels</b><span>Ungdom/voksen</span></article>
+        <article class="course violet"><time>Onsdag 19:30</time><b>Voksen/ungdom</b><span>Begynnere</span></article>
+        <article class="course violet"><time>Onsdag 20:25</time><b>Swing/Salsa</b><span>Begynnere</span></article>
+        <article class="course aqua"><time>Torsdag 16:00</time><b>Commercial</b><span>Ung/voksen · Begynnere</span></article>
+        <article class="course aqua"><time>Torsdag 16:55</time><b>Hip Hop & Street</b><span>Fortsettere 7-11 år</span></article>
+        <article class="course aqua"><time>Torsdag 17:40</time><b>Commercial</b><span>Ung/voksen · Fortsettere</span></article>
+        <article class="course mint" data-title="K-Pop" data-meta="Torsdag 18:40 · Under 14 år" data-copy="Disse kursene baserer seg på enkle, korte koreografier kjent fra sosiale medier og deriblant Tik Tok.|Kursene inneholder blant annet K-POP og Shuffle og man lærer en dans hver gang, eventuelt over to ganger hvis det er et lengre stykke koreografi.|Begynnerkursene krever ingen forkunnskaper."><time>Torsdag 18:40</time><b>K-Pop</b><span>Under 14 år</span></article>
+        <article class="course mint" data-title="K-Pop" data-meta="Torsdag 19:25 · Ungdom/voksen" data-copy="Disse kursene baserer seg på enkle, korte koreografier kjent fra sosiale medier og deriblant Tik Tok.|Kursene inneholder blant annet K-POP og Shuffle og man lærer en dans hver gang, eventuelt over to ganger hvis det er et lengre stykke koreografi.|Begynnerkursene krever ingen forkunnskaper."><time>Torsdag 19:25</time><b>K-Pop</b><span>Ungdom/voksen</span></article>
+        <article class="course aqua"><time>Torsdag 20:20</time><b>Hip Hop</b><span>Ungdom/voksen</span></article>
+        <article class="course cyan"><time>Fredag 16:15</time><b>Sportsdans</b><span>Rekruttering 2-3</span></article>
+        <article class="course sage"><time>Fredag 17:00</time><b>Solo Sportsdans</b><span>Ungdom</span></article>
+        <article class="course rose"><time>Fredag 17:45</time><b>Ballet Lukket undervisning</b><span>Kun inviterte</span></article>
+        <article class="course violet"><time>Fredag 18:45</time><b>Åpen Dansekveld</b><span>Kr. 50,- pr person</span></article>
+        <article class="course violet"><time>Fredag 19:30</time><b>Åpen Dansekveld</b><span>Fortsetter</span></article>
+        <article class="course violet"><time>Lørdag 11:00</time><b>3/5 år</b><span>Begynnere</span></article>
+        <article class="course violet"><time>Lørdag 11:45</time><b>5/7 år</b><span>Begynnere/Fortsettere</span></article>
+        <article class="course violet"><time>Lørdag 12:35</time><b>7/10 år</b><span>Sportsdans/pardans</span></article>
+      </div>
+
+      <footer class="footer">
+        <div class="notice">Endringer kan forekomme</div>
+        <div class="price">12 uker 1 person 1 kurs kr. 2690,- · 1 par kr. 4980,- · 2 søsken kr. 4980,- · 3 søsken kr. 6290,- · 4 søsken kr. 6900,- · 6 uker 1 kurs kr. 1790,-</div>
+      </footer>
+    </section>
+
+    <div class="drawer-backdrop" id="courseDrawer" aria-hidden="true">
+      <article class="course-detail" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+        <div class="detail-image"></div>
+        <div class="detail-body">
+          <div class="detail-kicker">Kursinformasjon</div>
+          <h2 id="detailTitle">Kurs</h2>
+          <p class="detail-meta" id="detailMeta"></p>
+          <div id="detailCopy"></div>
+          <div class="detail-actions">
+            <button class="detail-button" type="button" id="closeDrawer">Lukk</button>
+            <span class="detail-button primary">Meld deg på</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <script>
+    const drawer = document.getElementById("courseDrawer");
+    const title = document.getElementById("detailTitle");
+    const meta = document.getElementById("detailMeta");
+    const copy = document.getElementById("detailCopy");
+    const close = document.getElementById("closeDrawer");
+
+    document.querySelectorAll(".course").forEach((course) => {
+      course.tabIndex = 0;
+      course.addEventListener("click", () => openCourse(course));
+      course.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openCourse(course);
+        }
+      });
+    });
+
+    function openCourse(course) {
+      const fallbackTitle = course.querySelector("b")?.textContent || "Kurs";
+      const fallbackMeta = `${course.querySelector("time")?.textContent || ""} · ${course.querySelector("span")?.textContent || ""}`;
+      const text = course.dataset.copy || "Her kan Hildemors vise kursbeskrivelsen fra den opprinnelige nettsiden, praktisk informasjon, nivå, alder og lenke til påmelding.";
+
+      title.textContent = course.dataset.title || fallbackTitle;
+      meta.textContent = course.dataset.meta || fallbackMeta;
+      copy.innerHTML = text.split("|").map((paragraph) => `<p>${paragraph}</p>`).join("");
+      drawer.classList.add("open");
+      drawer.setAttribute("aria-hidden", "false");
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove("open");
+      drawer.setAttribute("aria-hidden", "true");
+    }
+
+    close.addEventListener("click", closeDrawer);
+    drawer.addEventListener("click", (event) => {
+      if (event.target === drawer) closeDrawer();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeDrawer();
+    });
+  </script>
+</body>
+</html>

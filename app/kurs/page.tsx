@@ -2,6 +2,29 @@ import Link from "next/link";
 import { CourseTypeCard } from "@/components/CourseTypeCard";
 import { courseTypes } from "@/lib/data/courseTypes";
 
+const courseGroups = [
+  {
+    title: "Barn og ungdom",
+    ids: ["barnekurs-small", "barnekurs-7-10", "sportsdans"],
+  },
+  {
+    title: "Hip hop, street og commercial",
+    ids: ["hiphop", "hiphop-under-16", "streetdance-kids", "kpop", "commercial"],
+  },
+  {
+    title: "Ballroom, latin og pardans",
+    ids: ["latin-solo", "ballroom-beg", "ballroom-par", "salsa", "swing"],
+  },
+  {
+    title: "Jazz, moderne og ballett",
+    ids: ["jazz", "jazz-heels", "song-dance", "ballett", "moderne"],
+  },
+  {
+    title: "Privat og åpent",
+    ids: ["brudevals", "apent"],
+  },
+];
+
 export default function CoursesPage() {
   return (
     <main>
@@ -24,9 +47,21 @@ export default function CoursesPage() {
 
       <section className="container page-section">
         <h2>Velg kurstype</h2>
-        <div className="grid-3">
-          {courseTypes.map((courseType) => (
-            <CourseTypeCard courseType={courseType} key={courseType.id} />
+        <div className="course-group-list">
+          {courseGroups.map((group) => (
+            <section className="course-group" key={group.title}>
+              <div className="course-group__head">
+                <h3>{group.title}</h3>
+              </div>
+              <div className="grid-3">
+                {group.ids.map((id) => {
+                  const courseType = courseTypes.find((type) => type.id === id);
+                  return courseType ? (
+                    <CourseTypeCard courseType={courseType} key={courseType.id} />
+                  ) : null;
+                })}
+              </div>
+            </section>
           ))}
         </div>
       </section>

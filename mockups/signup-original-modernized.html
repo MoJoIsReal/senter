@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hildemors påmelding modernisert</title>
+  <style>
+    :root {
+      --paper: #fbf8f2;
+      --surface: #ffffff;
+      --ink: #211d1a;
+      --muted: #6e655e;
+      --line: #e5ddd2;
+      --gold: #c59a3d;
+      --blue: #42667a;
+      --sage: #7d8c76;
+      --danger: #9a4d40;
+      --shadow: 0 16px 42px rgba(47, 36, 28, .10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 18px;
+    }
+
+    .hero {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-img {
+      height: 170px;
+      background-image: url("https://www.hildemors.no/wp-content/uploads/2019/02/20110825_fotografi_hildemors_landslag_MG_3650.jpg");
+      background-size: cover;
+      background-position: center 38%;
+    }
+
+    .hero-body {
+      padding: 20px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 34px;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .course-summary {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .course-summary h2 {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+
+    .summary-row {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .summary-row:last-child { border-bottom: 0; }
+
+    .summary-row b {
+      display: block;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .steps {
+      position: sticky;
+      top: 18px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 10px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .step:last-child { border-bottom: 0; }
+
+    .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: #f1eee4;
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    .step.active {
+      color: var(--ink);
+      font-weight: 850;
+    }
+
+    .step.active .num {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card-head {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: #fbf8f2;
+    }
+
+    .card-head h2 {
+      margin: 0 0 4px;
+      font-size: 21px;
+    }
+
+    .card-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .card-body {
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    label span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .input,
+    .select,
+    .textarea {
+      min-height: 44px;
+      padding: 10px 11px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .textarea { min-height: 84px; }
+
+    .radio-group {
+      display: grid;
+      gap: 8px;
+    }
+
+    .radio {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      min-height: 42px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fff;
+      color: #3b342e;
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .circle {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--blue);
+      border-radius: 999px;
+      background: #fff;
+      flex: 0 0 auto;
+    }
+
+    .help {
+      padding: 12px;
+      border: 1px solid #ddd7c6;
+      border-radius: 8px;
+      background: #f1eee4;
+      color: #4c433c;
+      font-size: 13px;
+    }
+
+    .terms-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .term {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .term b {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .term span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .read-more {
+      color: var(--blue);
+      font-weight: 850;
+    }
+
+    .accept {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+      padding: 14px;
+      border: 1px solid #d6cdbf;
+      border-radius: 8px;
+      background: #f1eee4;
+    }
+
+    .box {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--blue);
+      border-radius: 5px;
+      background: #fff;
+      flex: 0 0 auto;
+      margin-top: 2px;
+    }
+
+    .accept b {
+      display: block;
+      font-size: 14px;
+    }
+
+    .accept span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border: 1px solid #d9cfc1;
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      font-weight: 850;
+      font-size: 14px;
+    }
+
+    .btn.primary {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .required {
+      color: var(--danger);
+      font-weight: 900;
+    }
+
+    @media (max-width: 900px) {
+      main { padding: 14px; }
+      .intro, .shell { grid-template-columns: 1fr; }
+      .steps { position: static; }
+      .grid-2, .grid-3, .terms-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="intro">
+      <article class="hero">
+        <div class="hero-img"></div>
+        <div class="hero-body">
+          <h1>Påmelding Hildemors Dansesenter</h1>
+          <p class="lead">Samme informasjon som dagens Google-skjema, men fordelt i en roligere flyt med kursvalg, personinfo, samtykker og vilkår.</p>
+        </div>
+      </article>
+
+      <aside class="course-summary">
+        <h2>Valgt kurs</h2>
+        <div class="summary-row"><b>Hip Hop 10-13 år</b>Tirsdag 17:00 · 12 uker</div>
+        <div class="summary-row"><b>Status</b>2 ledige plasser</div>
+        <div class="summary-row"><b>Pris</b>Vises fra kursoppsettet i dashboardet</div>
+      </aside>
+    </section>
+
+    <section class="shell">
+      <nav class="steps" aria-label="Påmeldingssteg">
+        <div class="step active"><span class="num">1</span><span>Kurs og deltaker</span></div>
+        <div class="step"><span class="num">2</span><span>Foresatt og kontaktinfo</span></div>
+        <div class="step"><span class="num">3</span><span>Samtykker og vilkår</span></div>
+        <div class="step"><span class="num">4</span><span>Bekreft og send</span></div>
+      </nav>
+
+      <div class="form">
+        <article class="card">
+          <div class="card-head">
+            <h2>1. Kurs og deltaker</h2>
+            <p>Fanger opp navn, partner, fødselsdato og kursvalg fra dagens skjema.</p>
+          </div>
+          <div class="card-body">
+            <div class="grid-2">
+              <label>Fornavn <span>First name</span><div class="input">Emma</div></label>
+              <label>Etternavn <span>Surname</span><div class="input">Nilsen</div></label>
+            </div>
+            <label>Eventuell dansepartners navn <span>Fylles kun ut for parkurs eller om deltaker har med dansepartner.</span><div class="input">Valgfritt</div></label>
+            <div class="grid-3">
+              <label>Dag <span>Fødselsdato</span><div class="select">08</div></label>
+              <label>Måned <span>Month of birth</span><div class="select">Juni</div></label>
+              <label>År <span>Year of birth</span><div class="select">2012</div></label>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h2>2. Foresatt og kontaktinfo</h2>
+            <p>For barn og ungdom registreres foresatt tydelig. For voksne kan samme feltgruppe brukes som deltakerens kontaktinfo.</p>
+          </div>
+          <div class="card-body">
+            <div class="grid-2">
+              <label>Foresattes fornavn <span>Parent/guardian first name</span><div class="input">Kari</div></label>
+              <label>Foresattes etternavn <span>Parent/guardian surname</span><div class="input">Nilsen</div></label>
+            </div>
+            <div class="grid-2">
+              <label>Foresattes e-postadresse <span>Brukes til bekreftelse, betaling og kursinfo.</span><div class="input">kari@example.no</div></label>
+              <label>Foresattes telefonnummer <span>Phone number</span><div class="input">999 99 999</div></label>
+            </div>
+            <label>Ekstra kontaktperson <span>Valgfritt, for eksempel den andre foresatte.</span><div class="input">Navn, telefon eller e-post</div></label>
+            <label>Gateadresse og husnummer <span>Address</span><div class="input">Torgallmenningen 1</div></label>
+            <label>Postnummer og poststed <span>Postal code and city</span><div class="input">5014 Bergen</div></label>
+            <label>Aktivitetskort fra Bergen Kommune <span>Kortnummer eller beskjed om at kupong sendes til Hildemors.</span><div class="input">Valgfritt</div></label>
+            <label>Beskjed til Hildemors <span>Erfaring, behov, helse eller annen praktisk informasjon.</span><div class="textarea">Valgfritt</div></label>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h2>3. Samtykker og vilkår</h2>
+            <p>Det lange regelverket fra Google Forms gjøres lesbart, men fortsatt juridisk tydelig.</p>
+          </div>
+          <div class="card-body">
+            <label>Vil du være med på reklamefoto/film? <span>Det hender Hildemors fotograferer eller filmer for å vise hva de driver med.</span></label>
+            <div class="radio-group">
+              <div class="radio"><span class="circle"></span>Ja, det er helt i orden for meg</div>
+              <div class="radio"><span class="circle"></span>Nei, det ønsker jeg ikke</div>
+            </div>
+
+            <div class="help">Kursvilkårene vises først som korte punkter. Full norsk/engelsk tekst kan åpnes under hvert punkt eller i en egen detaljvisning.</div>
+
+            <div class="terms-grid">
+              <div class="term"><b>Bindende påmelding</b><span>Avmelding må skje innen første kursuke for ordinære semesterkurs. <span class="read-more">Les detaljer</span></span></div>
+              <div class="term"><b>Bytte av kurs</b><span>Kan gjøres hvis ønsket kurs har ledig plass. Eventuell prisdifferanse betales. <span class="read-more">Les detaljer</span></span></div>
+              <div class="term"><b>Betaling og prøvetime</b><span>Kurset betales ved første oppmøte. Prøvetime har minimumsbetaling. <span class="read-more">Les detaljer</span></span></div>
+              <div class="term"><b>Fravær og refusjon</b><span>Fravær refunderes normalt ikke, og skolen må informeres skriftlig. <span class="read-more">Les detaljer</span></span></div>
+              <div class="term"><b>Vikar og endringer</b><span>Vikar kan brukes, og stil/trener kan variere ved behov. <span class="read-more">Les detaljer</span></span></div>
+              <div class="term"><b>Force majeure</b><span>Hildemors er ikke ansvarlig ved hendelser utenfor senterets kontroll. <span class="read-more">Les detaljer</span></span></div>
+            </div>
+
+            <div class="accept">
+              <span class="box"></span>
+              <div>
+                <b>Jeg godtar påmelding- og betalingsbetingelsene <span class="required">*</span></b>
+                <span>Yes, I accept the rules and regulations.</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h2>4. Bekreft og send</h2>
+            <p>Viser oppsummering før innsending. Etterpå får kunden kvittering og Hildemors får saken i dashboardet.</p>
+          </div>
+          <div class="card-body">
+            <div class="help">Påmeldingen opprettes med status “ny”. Hvis kurset er fullt, settes den automatisk på venteliste.</div>
+            <div class="actions">
+              <span class="btn">Tilbake</span>
+              <span class="btn primary">Send påmelding</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

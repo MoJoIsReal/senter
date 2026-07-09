@@ -22,6 +22,13 @@ export default async function ContentPage({ params }: PageProps) {
       <span className="eyebrow">Hildemors</span>
       <h1>{page.title}</h1>
       <p className="lead">{page.intro}</p>
+      {page.image ? (
+        <div
+          aria-hidden="true"
+          className="content-image content-image--hero"
+          style={{ backgroundImage: `url(${page.image})` }}
+        />
+      ) : null}
       <div className="panel content-panel">
         {page.body.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
@@ -32,6 +39,13 @@ export default async function ContentPage({ params }: PageProps) {
             id={section.title.toLowerCase().startsWith("historien") ? "historie" : undefined}
             key={section.title}
           >
+            {section.image ? (
+              <div
+                aria-hidden="true"
+                className="content-image"
+                style={{ backgroundImage: `url(${section.image})` }}
+              />
+            ) : null}
             <h2>{section.title}</h2>
             {section.body.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>

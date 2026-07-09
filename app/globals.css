@@ -7,12 +7,12 @@
   --gold: #c59a3d;
   --blue: #42667a;
   --sage: #7d8c76;
-  --aqua: #28c7c5;
-  --cyan: #24b8d8;
-  --violet: #b98be8;
-  --pink: #e989bd;
-  --rose: #d54d81;
-  --mint: #a8e7e4;
+  --aqua: #bce8e4;
+  --cyan: #c7e4ed;
+  --violet: #d8c4ec;
+  --pink: #ead0df;
+  --rose: #d9a7bd;
+  --mint: #d6ebe0;
   --danger: #9a4d40;
   --shadow: 0 16px 42px rgba(47, 36, 28, 0.1);
 }
@@ -71,15 +71,14 @@ textarea {
 
 .brand {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: center;
   font-weight: 900;
 }
 
-.brand span {
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 650;
+.brand img {
+  display: block;
+  width: 130px;
+  height: auto;
 }
 
 .site-nav {
@@ -199,7 +198,7 @@ h3 {
   border-radius: 10px;
   background:
     linear-gradient(180deg, rgba(33, 29, 26, 0.05), rgba(33, 29, 26, 0.22)),
-    url("https://www.hildemors.no/wp-content/uploads/2019/02/20110825_fotografi_hildemors_landslag_MG_3650.jpg")
+    url("/images/landingpage.webp")
       center / cover;
   box-shadow: var(--shadow);
 }
@@ -221,6 +220,30 @@ h3 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
+}
+
+.course-group-list {
+  display: grid;
+  gap: 22px;
+  margin-top: 18px;
+}
+
+.course-group {
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.course-group__head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.course-group__head h3 {
+  margin: 0;
+  font-size: 24px;
 }
 
 .section-heading {
@@ -247,8 +270,10 @@ h3 {
 }
 
 .course-card__image {
-  min-height: 155px;
-  background-position: center;
+  min-height: 210px;
+  background-color: #fff;
+  background-position: center top;
+  background-repeat: no-repeat;
   background-size: cover;
 }
 
@@ -290,6 +315,14 @@ h3 {
 
 .site-footer p {
   color: rgba(255, 255, 255, 0.75);
+}
+
+.footer-logo {
+  width: 180px;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 14px;
+  filter: brightness(0) invert(1);
 }
 
 .page-title-row {
@@ -379,7 +412,7 @@ h3 {
   border-radius: 8px;
   color: #15110f;
   text-align: left;
-  box-shadow: 0 8px 16px rgba(47, 36, 28, 0.08);
+  box-shadow: 0 7px 14px rgba(47, 36, 28, 0.06);
   cursor: pointer;
   transition:
     transform 0.16s ease,
@@ -389,7 +422,7 @@ h3 {
 .schedule-course:hover,
 .schedule-course:focus-visible {
   transform: translateY(-1px);
-  box-shadow: 0 12px 22px rgba(47, 36, 28, 0.14);
+  box-shadow: 0 12px 22px rgba(47, 36, 28, 0.12);
   outline: 2px solid rgba(66, 102, 122, 0.4);
   outline-offset: 2px;
 }
@@ -416,31 +449,37 @@ h3 {
 
 .aqua {
   background: var(--aqua);
+  border-color: #88c9c3;
 }
 
 .cyan {
   background: var(--cyan);
+  border-color: #91c5d4;
 }
 
 .violet {
   background: var(--violet);
+  border-color: #b695d3;
 }
 
 .pink {
   background: var(--pink);
+  border-color: #d8a9c3;
 }
 
 .rose {
   background: var(--rose);
-  color: #fff;
+  border-color: #c1849e;
 }
 
 .mint {
   background: var(--mint);
+  border-color: #a9cdbb;
 }
 
 .gold-block {
-  background: #e8cb77;
+  border-color: #cfb25e;
+  background: #ead899;
 }
 
 .schedule-footer {
@@ -516,6 +555,22 @@ h3 {
 
 .content-panel p {
   font-size: 17px;
+}
+
+.content-image {
+  min-height: 230px;
+  margin-bottom: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 12px 28px rgba(47, 36, 28, 0.08);
+}
+
+.content-image--hero {
+  min-height: 360px;
+  margin: 24px 0 0;
 }
 
 .content-subsection {
